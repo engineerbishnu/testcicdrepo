@@ -19,7 +19,7 @@ jobs:
 
       - name: Apply Kubernetes Configuration
         run: |
-          kubectl apply -f ordpress_with_db.yaml
+          kubectl apply -f wordpress_with_db.yaml
 
       - name: Verify Deployment
         run: |
