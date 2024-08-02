@@ -1,5 +1,5 @@
 
-name: Provision Local Machine
+name: Deploy
 
 on:
   push:
