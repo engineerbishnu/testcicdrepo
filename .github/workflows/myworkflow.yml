@@ -11,7 +11,7 @@ on:
 
 jobs:
   provision:
-    runs-on: [bishnu-IdeaPad-5-15ITL0]  # Replace 'your-runner-label' with the label of your self-hosted runner
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
