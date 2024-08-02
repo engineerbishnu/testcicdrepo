@@ -1,0 +1,32 @@
+
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the 'main' branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull requests targeting the 'main' branch
+
+jobs:
+  provision:
+    runs-on: [self-hosted, bishnu-IdeaPad-5-15ITL0]  # Replace 'your-runner-label' with the label of your self-hosted runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Apply Kubernetes Configuration
+        run: |
+          kubectl apply -f ordpress_with_db.yaml
+
+      - name: Verify Deployment
+        run: |
+          kubectl get deployments
+          kubectl get pods
+          sleep 90 && kubectl get ns
+          sleep 90 && kubectl get nodes
+          sleep 90 && kubectl get pods
+          sleep 90 && kubectl get svc
+          kubectl port-forward svc/wordpress 30010:80 &
